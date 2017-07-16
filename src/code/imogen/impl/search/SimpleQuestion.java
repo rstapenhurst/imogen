@@ -2,15 +2,29 @@ package code.imogen.impl.search;
 
 public class SimpleQuestion implements Question {
 	
-	private String text;
+	private final int order;
+	private final String text;
+	private final String example;
 
-	public SimpleQuestion(String text) {
+	public SimpleQuestion(int order, String text, String example) {
+		this.order = order;
 		this.text = text;
+		this.example = example;
+	}
+
+	@Override
+	public int getOrder() {
+		return order;
 	}
 
 	@Override
 	public String getText() {
 		return text;
+	}
+	
+	@Override
+	public String getExample() {
+		return example;
 	}
 
 	@Override

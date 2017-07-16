@@ -57,13 +57,20 @@ public class Debug implements CommandListener {
 
 		String questionText = TextConverters.questionToText(question);
 		System.out.println(questionText);
+		if (question.getExample() != null) {
+			System.out.println("(e.g. " + question.getExample() + ")");
+		}
 		try {
 			String text = reader.readLine();
 			if (text.equals("")) {
 				if (question instanceof OneOfQuestion) {
 					text = "" + rand.nextInt(((OneOfQuestion)question).options.size());
 				} else {
-					text = "((" + questionText + "))";
+					if (question.getExample() != null) {
+						text = question.getExample();
+					} else {
+						text = "((" + questionText + "))";
+					}
 				}
 			}
 			Answer answer = TextConverters.textToAnswer(text, question);

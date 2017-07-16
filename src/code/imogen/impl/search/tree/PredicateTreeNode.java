@@ -1,5 +1,6 @@
 package code.imogen.impl.search.tree;
 
+import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
@@ -25,8 +26,10 @@ public class PredicateTreeNode implements TreeNode {
 	}
 
 	@Override
-	public Question getQuestion(FullState state) {
-		return question;
+	public Set<Question> getQuestions(FullState state) {
+		Set<Question> result = new HashSet<>();
+		result.add(question);
+		return result;
 	}
 	
 	@Override

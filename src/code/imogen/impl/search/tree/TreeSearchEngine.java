@@ -44,10 +44,8 @@ public class TreeSearchEngine implements SearchEngine {
 			if (template.canResolve(state)) {
 				resolvable.add(template);
 			} else {
-				Question nextQuestion = template.getPendingQuestion(state);
-				if (nextQuestion != Question.VOID) {
-					pendingClauseQuestions.add(nextQuestion);
-				}
+				Set<Question> nextQuestions = template.getPendingQuestions(state);
+				pendingClauseQuestions.addAll(nextQuestions);
 			}
 		}
 		for (ClauseTemplate template : resolvable) {
@@ -73,16 +71,18 @@ public class TreeSearchEngine implements SearchEngine {
 	@Override
 	public Question getPendingQuestion() {
 		if (!pendingNodes.isEmpty()) {
+			HashSet<Question> possibleQuestions = new HashSet<>();
 			for (TreeNode node : pendingNodes) {
-				if (node.getQuestion(state) != Question.VOID) {
-					return node.getQuestion(state);
-				}
+				possibleQuestions.addAll(node.getQuestions(state));
+			}
+			Question candidate = Question.first(possibleQuestions);
+			if (candidate != Question.VOID) {
+				return candidate;
 			}
 		}
-		if (!pendingClauseQuestions.isEmpty()) {
-			return pendingClauseQuestions.iterator().next();
-		}
-		return Question.VOID;
+		Question clauseCandidate = Question.first(pendingClauseQuestions);
+		// Default VOID.
+		return clauseCandidate;
 	}
 
 	@Override

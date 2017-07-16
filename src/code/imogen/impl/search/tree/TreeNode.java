@@ -11,7 +11,7 @@ import code.imogen.impl.search.Question.VoidQuestion;
 
 public interface TreeNode {
 
-	Question getQuestion(FullState state);
+	Set<Question> getQuestions(FullState state);
 	TreeNode next(FullState state);
 	Set<StateLabel> getLabels();
 	boolean shouldAdvance(FullState state);
@@ -23,8 +23,8 @@ public interface TreeNode {
 			}
 
 			@Override
-			public VoidQuestion getQuestion(FullState state) {
-				return Question.VOID;
+			public Set<Question> getQuestions(FullState state) {
+				return new HashSet<>();
 			}
 
 			@Override

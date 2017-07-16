@@ -17,7 +17,7 @@ import code.imogen.upload.S3Uploader;
 
 public class Main {
 	
-	private List<CommandListener> listeners = new ArrayList<>();
+	private CommandListener listener = null;
 	private Map<Integer, SearchEngine> searchEngines = new HashMap<>();
 	S3Uploader s3uploader = new S3Uploader();
 	
@@ -25,23 +25,19 @@ public class Main {
 	}
 	
 	public void registerListener(CommandListener listener) {
-		listeners.add(listener);
+		this.listener = listener;
 	}
 	
 	private void handleCommand(SessionData session, Command command) {
 		switch (command.getType()) {
 		case QUIT:
-			for (CommandListener listener : listeners) {
-				listener.quit(session);
-			}
+			listener.quit(session);
 			break;
 		case UPLOAD_DOCUMENT:
 			FullState state = searchEngines.get(session.id).getResult();
 			String html = TextConverters.toHtml(state.clauses);
 			String url = s3uploader.upload("poc" + session.id, html);
-			for (CommandListener listern : listeners) {
-				listern.print(session, url);
-			}
+			listener.print(session, url);
 			break;
 		case START_ENGINE:
 		case RESET:
@@ -52,7 +48,9 @@ public class Main {
 	
 	public void acceptAnswer(
 			SessionData session, Question question, Answer answer) {
-		if (answer.isCommand()) {
+		if (answer == Answer.VOID) {
+			listener.print(session, "Please select a valid option.\n");
+		} else if (answer.isCommand()) {
 			handleCommand(session, answer.asCommand());
 		} else {
 			if (searchEngines.containsKey(session.id)) {

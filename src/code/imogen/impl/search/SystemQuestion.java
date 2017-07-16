@@ -15,7 +15,7 @@ public class SystemQuestion implements Question {
 
 	@Override
 	public Answer makeAnswer(String answer) {
-		return Answer.voidAnswer();
+		return Answer.VOID;
 	}
 
 	@Override
@@ -46,6 +46,16 @@ public class SystemQuestion implements Question {
 		} else if (!text.equals(other.text))
 			return false;
 		return true;
+	}
+
+	@Override
+	public int getOrder() {
+		return -1;
+	}
+	
+	@Override
+	public String getExample() {
+		return null;
 	}
 
 }

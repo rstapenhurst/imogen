@@ -4,16 +4,24 @@ import java.util.List;
 
 public class OneOfQuestion implements Question {
 
+	private final int order;
 	public final String question;
 	public final List<String> options;
 
 	public OneOfQuestion(
+			int order,
 			String question,
 			List<String> options) {
+		this.order = order;
 		this.question = question;
 		this.options = options;
 	}
 
+	@Override
+	public int getOrder() {
+		return order;
+	}
+	
 	@Override
 	public String getText() {
 		return question;
@@ -24,13 +32,30 @@ public class OneOfQuestion implements Question {
 		try {
 			return new OneOfAnswer(Integer.parseInt(answer));
 		} catch (NumberFormatException e) {
-			return new OneOfAnswer(options.indexOf(answer));
+			for (int i = 0; i < options.size(); i++) {
+				if (options.get(i).equals(answer)) {
+					return new OneOfAnswer(i);
+				}
+				if (makeQuestionText(i).equals(answer)) {
+					return new OneOfAnswer(i);
+				}
+			}
+			return Answer.VOID;
 		}
 	}
 
 	@Override
 	public String getAnswerText(Answer answer) {
 		return options.get(((OneOfAnswer)answer).selectedOption);
+	}
+	
+	@Override
+	public String getExample() {
+		return null;
+	}
+	
+	public String makeQuestionText(int index) {
+		return String.format("[%d] %s", index+1, options.get(index));
 	}
 	
 	@Override

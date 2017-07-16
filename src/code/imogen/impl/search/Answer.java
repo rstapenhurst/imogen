@@ -10,8 +10,6 @@ public abstract class Answer {
 		throw new RuntimeException("This answer is not a command");
 	}
 	
-	public static Answer voidAnswer() {
-		return new Answer() {};
-	}
+	public static Answer VOID = new Answer() {};
 	
 }

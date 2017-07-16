@@ -1,10 +1,10 @@
 package code.imogen.impl.search.tree;
 
+import java.util.HashSet;
 import java.util.Set;
 
 import code.imogen.impl.search.FullState;
 import code.imogen.impl.search.Question;
-import code.imogen.impl.search.Question.VoidQuestion;
 import code.imogen.impl.search.StateLabel;
 
 public class LabelTreeNode implements TreeNode {
@@ -17,8 +17,8 @@ public class LabelTreeNode implements TreeNode {
 	}
 
 	@Override
-	public VoidQuestion getQuestion(FullState state) {
-		return Question.VOID;
+	public Set<Question> getQuestions(FullState state) {
+		return new HashSet<>();
 	}
 	
 	@Override
