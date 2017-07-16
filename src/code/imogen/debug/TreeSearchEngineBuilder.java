@@ -153,7 +153,7 @@ public class TreeSearchEngineBuilder {
 						" and the Defendant agreed ", defendantObligations, ".")
 				.build(and(is("contract"), or(is("defendant_is_individual"), is("agreement_with_company")))));
 		clauses.add(ClauseBuilder.newBuilder()
-				.then("There was a written contract between the Claimant and the ", companyRepresentative,
+				.then("There was a written contract between the Claimant and ", companyRepresentative,
 						" (acting on behalf of the Defendant) made on ", agreementDate, " at ", agreementLocation, " for the purpose of ",
 						agreementPurpose, ". The Claimant agreed ", claimantObligations, " and the Defendant agreed ", defendantObligations, ".")
 				.build(is("contract", "defendant_is_company", "agreement_with_employee")));
@@ -163,7 +163,7 @@ public class TreeSearchEngineBuilder {
 						" and the Defendant agreed ", defendantObligations, ".")
 				.build(is("oral", "defendant_is_individual")));
 		clauses.add(ClauseBuilder.newBuilder()
-				.then("There was an oral agreement between the Claimant and the ", companyRepresentative,
+				.then("There was an oral agreement between the Claimant and ", companyRepresentative,
 						" (acting on behalf of the Defendant) made on ", agreementDate, " at ", agreementLocation, " for the purpose of ",
 						agreementPurpose, ". The Claimant agreed ", claimantObligations, " and the Defendant agreed ", defendantObligations, ".")
 				.build(is("oral", "defendant_is_company")));/**/
