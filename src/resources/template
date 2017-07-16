@@ -1,0 +1,112 @@
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<html>
+
+<head>
+    <style>
+        .heading {
+            text-align: center;
+        }
+        .hilited {
+        	background-color: yellow;
+        	}
+
+
+		.clause-section {
+			padding-top: 15px;
+		}
+        .pad {
+            display: block;
+            height: 25px;
+        }
+        
+        .admitted {
+        		color: green;
+        	}
+        	.denied {
+        		color: darkred;
+        	}
+        	.not-admitted {
+        	color: gray;
+        	}
+        	
+        	.clause-id {
+        	padding-right: 20px;
+        		margin-right: 20px;
+        	}
+        	
+        	.fact {
+        	border-width: thin;
+        	border-style: dotted;
+        	}
+    </style>
+    
+    <script>
+    function hilite(id) {
+		document.getElementById(id).classList.toggle("hilited");
+    }
+    </script>
+</head>
+
+<body>
+
+    <div>
+        <table width="100%" class="heading">
+            <tr>
+                <td>In the $court</td>
+                <td></td>
+                <td>Claim No. $claimNumber</td>
+            </tr>
+            <td class="pad"></td>
+            <tr>
+            </tr>
+            <tr>
+                <td>Between</td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>$claimant</td>
+                <td>(Claimant)</td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>and</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>$defendant</td>
+                <td>(Defendant)</td>
+            </tr>
+            <td class="pad"></td>
+            <tr>
+            </tr>
+            <tr>
+                <td></td>
+                <td>-----------------------------------</td>
+                <td>-----------------</td>
+            </tr>
+            <tr>
+                <td></td>
+                <td> PARTICULARS OF CLAIM </td>
+                <td> DEFENCE </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>-----------------------------------</td>
+                <td>-----------------</td>
+            </tr>
+        </table>
+    </div>
+
+    <div>
+    <table width="100%">
+        $contents
+    </table>
+    </div>
+
+
+</body>
+
+</html>
