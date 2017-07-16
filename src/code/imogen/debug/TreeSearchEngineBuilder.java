@@ -10,6 +10,7 @@ import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Scanner;
 import java.util.Set;
 
 import code.imogen.impl.search.AnswerPredicate;
@@ -41,6 +42,20 @@ public class TreeSearchEngineBuilder {
 		Set<TreeNode> trees = new HashSet<>();
 		Set<ClauseTemplate> clauses = new HashSet<>();
 		List<Section> sections = new ArrayList<>();
+/*
+		StringBuilder sb = new StringBuilder();		
+		try (Scanner sc = new Scanner(TreeSearchEngineBuilder.class.getResourceAsStream("/resources/template"))) {
+			while (sc.hasNext()) {
+				sb.append(sc.nextLine()).append("\n");
+			}
+		}
+		ClauseTemplate header = ClauseBuilder.newBuilder()
+				.then(sb.toString(), q("asd", "qwe"))
+				.build();
+		header.preformatted = true;
+		clauses.add(header);
+		sections.add(new Section(0, new HashSet<>(), clauses));
+		clauses = new HashSet<>();/**/
 		
 		trees.add(QuestionNode.of(
 				"Are you bringing a claim in your capacity as an individual or a company?")

@@ -74,6 +74,9 @@ public class ImogenBot extends TelegramLongPollingBot implements CommandListener
 		} else {
 			text.append(questionText);
 		}
+		if (question.getExample() != null) {
+			text.append("\n").append("(e.g. ").append(question.getExample()).append(")");
+		}
 		if (question instanceof OneOfQuestion) {
 			OneOfQuestion q = (OneOfQuestion)question;
 			text.append("\n");
