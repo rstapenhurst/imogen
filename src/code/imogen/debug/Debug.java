@@ -17,8 +17,12 @@ import code.imogen.impl.search.Question;
 public class Debug implements CommandListener {
 	
 	public static final Random rand = new Random();
+	public static String AWS_KEY;
+	public static String AWS_SECRET;
 
 	public static void main(String[] args) {
+		AWS_KEY = args[0];
+		AWS_SECRET = args[1];
 		Main main = new Main();
 		Debug db = new Debug(main);
 		db.run();

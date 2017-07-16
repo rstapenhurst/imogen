@@ -9,13 +9,15 @@ import org.jets3t.service.model.S3Bucket;
 import org.jets3t.service.model.S3Object;
 import org.jets3t.service.security.AWSCredentials;
 
+import code.imogen.debug.Debug;
+
 public class S3Uploader {
 
 	private final S3Service s3Service;
 	
 	public S3Uploader() {
 		AWSCredentials awsCredentials = 
-			    new AWSCredentials(ACCESS_KEY, SECRET_ACCESS_KEY);
+			    new AWSCredentials(Debug.AWS_KEY, Debug.AWS_SECRET);
 		s3Service = new RestS3Service(awsCredentials);
 	}
 	
